@@ -127,4 +127,5 @@ if __name__ == "__main__":
     parser.add_argument("-p", "--port", type=int, default=12345, help="Port to connect to")
     args = parser.parse_args()
 
+    client = ChatClient(port=args.port, debug=args.debug)
     client.start()
