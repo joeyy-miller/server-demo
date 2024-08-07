@@ -306,7 +306,8 @@ Available commands:
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Chat Server")
     parser.add_argument("-d", "--debug", action="store_true", help="Enable debug mode")
+    parser.add_argument("-p", "--port", type=int, default=12345, help="Port to run the server on")
     args = parser.parse_args()
 
-    server = ChatServer(debug=args.debug)
+    server = ChatServer(port=args.port, debug=args.debug)
     server.start()

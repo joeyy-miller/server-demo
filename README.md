@@ -23,14 +23,21 @@ The system uses socket programming to establish connections between the server a
 ## Usage
 
 ### Starting the Server
-python server.py [-d]
-Copy
-Use the `-d` flag to run in debug mode.
+
+`python server.py [-d][-p PORT]`
+
+- Use the `-d` flag to run in debug mode.
+- Use the `-p` flag followed by a port number to specify the port (default is 12345).
+
+NOTE: The default port is `12344`.
 
 ### Starting a Client
-python client.py [-d]
-Copy
-Use the `-d` flag to run in debug mode.
+`python client.py [-d][-p PORT]`
+- Use the `-d` flag to run in debug mode.
+- Use the `-p` flag followed by a port number to specify the port to connect to (default is 12345).
+
+NOTE: The default port is `12344`.
+
 
 ### Available Commands
 
@@ -44,8 +51,10 @@ Server-only commands:
 ## Running Tests
 
 To run the test suite:
-python -m unittest test_chat_system.py
-Copy
+`python -m unittest test_chat_system.py [-p PORT]`
+- Use the `-p` flag followed by a port number to specify the port for testing (default is 12345).
+
+
 ## Known Issues and Limitations
 
 1. The system doesn't handle server crashes gracefully. Clients may need to be manually restarted.
@@ -62,11 +71,3 @@ Copy
 - Improve error handling and recovery mechanisms
 - Implement message encryption
 - Add support for file transfers and multimedia messages
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-## License
-
-This project is open source and available under the [MIT License](LICENSE).

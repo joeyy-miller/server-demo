@@ -124,7 +124,7 @@ Chat tips:
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Chat Client")
     parser.add_argument("-d", "--debug", action="store_true", help="Enable debug mode")
+    parser.add_argument("-p", "--port", type=int, default=12345, help="Port to connect to")
     args = parser.parse_args()
 
-    client = ChatClient(debug=args.debug)
     client.start()

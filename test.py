@@ -2,14 +2,20 @@ import unittest
 import threading
 import time
 import socket
+import argparse
 from server import ChatServer
 from client import ChatClient
 
 class TestChatSystem(unittest.TestCase):
+    
     @classmethod
     def setUpClass(cls):
+        parser = argparse.ArgumentParser()
+        parser.add_argument("-p", "--port", type=int, default=12345, help="Port to run tests on")
+        cls.args = parser.parse_args()
+
         # Start the server in a separate thread
-        cls.server = ChatServer(port=12346, debug=True)
+        cls.server = ChatServer(port=cls.args.port, debug=True)
         cls.server_thread = threading.Thread(target=cls.server.start)
         cls.server_thread.daemon = True
         cls.server_thread.start()
@@ -23,7 +29,7 @@ class TestChatSystem(unittest.TestCase):
 
     def setUp(self):
         # Create a new client for each test
-        self.client = ChatClient(port=12346, debug=True)
+        self.client = ChatClient(port=self.args.port, debug=True)
 
     def tearDown(self):
         # Disconnect the client after each test
@@ -58,8 +64,8 @@ class TestChatSystem(unittest.TestCase):
 
     def test_whisper(self):
         # Test the whisper functionality
-        client1 = ChatClient(port=12346, debug=True)
-        client2 = ChatClient(port=12346, debug=True)
+        client1 = ChatClient(port=self.args.port, debug=True)
+        client2 = ChatClient(port=self.args.port, debug=True)
         client1.start()
         client2.start()
         client1.username = "User1"
